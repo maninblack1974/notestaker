@@ -14,7 +14,9 @@ var {v4 : uuidv4} = require('uuid');
 
 module.exports = function(app) {
   app.get("/api/notes", function(req, res) {
-    res.send(noteData);
+    fs.readFile("./db/db.json", function(err,data) {
+      res.json(JSON.parse(data));
+    });
   });
 
   app.post("/api/notes", function(req, res) {
